@@ -14,12 +14,14 @@
 Route::get('/', 'HomeController@index');
 
 Route::get('home', 'HomeController@index');
-Route::get('contacts', 'Contact@index');
-Route::get('contacts-add', 'contactAdd@index');
-Route::post('contacts-add/save', 'contactAdd@store');
-Route::get('contacts/save', 'contactAdd@store');
-Route::get('contacts/create', 'Contact@create');
-Route::get('contact/save', 'Contact@store');
+Route::get('contacts', 'contacts@index');
+
+Route::get('contacts-add', 'contacts@create');
+Route::post('contacts-save', 'contacts@store');
+Route::get('contacts-edit/{id}', 'contacts@edit');
+Route::post('contacts-update/{id}', 'contacts@update');
+Route::get('contacts-delete/{id}', 'contacts@destroy');
+
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

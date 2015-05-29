@@ -5,7 +5,10 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class Contact extends Controller {
+use App\Contact;
+use DB;
+
+class Contacts extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -13,8 +16,14 @@ class Contact extends Controller {
 	 * @return Response
 	 */
 	public function index()
-	{
-		return view('contact/contact_listing');
+	{	
+		
+		$users = DB::table('contacts')->get();
+
+		
+
+			
+		return view('contact/contact_listing')->with('user',$users);
 	}
 
 	/**
@@ -23,9 +32,9 @@ class Contact extends Controller {
 	 * @return Response
 	 */
 	public function create()
-	{
-		//
-		echo "This is create page";
+	{ 
+		
+		return view('contact/contact_add');
 	}
 
 	/**
@@ -33,9 +42,26 @@ class Contact extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $add)
 	{
-		echo "Store process";
+		
+		
+		$name = $add->input('name');
+		$email = $add->input('email');
+
+					
+			$data	=	DB::table('contacts')->insert(
+			    ['name' => $name, 'email' => $email]
+			);
+			if($data){
+					return redirect('contacts');
+				}
+				else{
+				return view('contact/contact_saved');
+				}
+
+
+			
 	}
 
 	/**
@@ -58,6 +84,11 @@ class Contact extends Controller {
 	public function edit($id)
 	{
 		//
+		$result = DB::select('select * from contacts where id = ?', [$id]);;
+
+
+		return view('contact/contact_edit')->with('user',$result);
+
 	}
 
 	/**
@@ -66,9 +97,14 @@ class Contact extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id,Request $update)
 	{
 		//
+		$name = $update->input('name');
+		$email = $update->input('email');
+
+		echo $name , $email;
+
 	}
 
 	/**

@@ -7,32 +7,37 @@
 			<div class="panel panel-default">
 
 				<div class="panel-heading">Contact Add</div>
-
+				<ul>
+				    @foreach($errors->all() as $error)
+				        <li>{{ $error }}</li>
+				    @endforeach
+				</ul>
 				<div class="panel-body">
-				{!! Form::open(array( 'class' => 'form')) !!}
+					
+					{!! Form::open(array('url' => 'contacts-save' , 'class' => 'form')) !!}
 
-<div class="form-group">
-    {!! Form::label('Your Name') !!}
-    {!! Form::text('name', null, 
-        array('required', 
-              'class'=>'form-control', 
-              'placeholder'=>'Your name')) !!}
-</div>
+					<div class="form-group">
+						{!! Form::label('Your Name') !!}
+						{!! Form::text('name' , null,
+						array('required', 'class' => 'form-control' , 'placeholder' => 'Enter your name' )) !!}
 
-<div class="form-group">
-    {!! Form::label('Your E-mail Address') !!}
-    {!! Form::text('email', null, 
-        array('required', 
-              'class'=>'form-control', 
-              'placeholder'=>'Your e-mail address')) !!}
-</div>
+					 </div>
+
+					<div class="form-group">
+						{!! Form::label('Your email Address') !!} 
+						{!!  Form::text('email',null,
+						 array('required', 'class' => 'form-control', 'placeholder' => 'Enter your email! ')) !!}
+					</div>
 
 
-<div class="form-group">
-    {!! Form::submit('Add!', 
-      array('class'=>'btn btn-primary')) !!}
-</div>
-{!! Form::close() !!}
+
+					<div class="form-group">
+					    {!! Form::submit('Add!', 
+					      array('class'=>'btn btn-primary')) !!}
+					</div>
+
+					{!! Form::close() !!}
+
 
 				</div>
 			</div>
@@ -40,3 +45,4 @@
 	</div>
 </div>
 @endsection
+
