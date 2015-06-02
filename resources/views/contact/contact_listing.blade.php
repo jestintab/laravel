@@ -11,6 +11,15 @@
 				<div class="panel-heading">Contact Listings</div>
 
 				<div class="panel-body">
+				@if(Session::has('flash_message'))
+			
+					<div class="alert alert-success">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+						<strong></strong> 
+					
+						{{ Session::get('flash_message') }}
+					</div>
+				@endif
 					<a href="{{ url('/contacts-add') }}"><button  class="btn btn-primary">Add Contacts</button></a>
 					<table class="table table-hover">
 						<thead>

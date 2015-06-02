@@ -1,6 +1,6 @@
-<?php namespace App\Services;
+<?php namespace ContactsApp\Services;
 
-use App\User;
+use ContactsApp\User;
 use Validator;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 

@@ -1,10 +1,10 @@
 <?php 
-foreach ($user as $users){
-	$id =$users->id;
-	$name = $users->name;
-	$email = $users->email;
+// foreach ($user as $users){
+// 	$id =$users->id;
+// 	$name = $users->name;
+// 	$email = $users->email;
 
-}
+// }
 
 ?>
 @extends('app')
@@ -24,22 +24,22 @@ foreach ($user as $users){
 
 				<div class="panel-body">
 					
-					{!! Form::open(array('url' => 'contacts-update' , 'class' => 'form')) !!}
+					{!! Form::model($result, array('action' => array('contacts@update',$result->id) , 'class' => 'form')) !!}
 
 					<div class="form-group">
 						{!! Form::label('Your Name') !!}
-						{!! Form::text('name' , $name,
+						{!! Form::text('name' ,null,
 						array('required', 'class' => 'form-control' , 'placeholder' => 'Enter your name'  )) !!}
 
 					</div>
 
 					<div class="form-group">
 						{!! Form::label('Your email Address') !!} 
-						{!!  Form::text('email',$email,
+						{!!  Form::text('email',null,
 						array('required', 'class' => 'form-control', 'placeholder' => 'Enter your email!')) !!}
 					</div>
 
-					<input type="hidden" value="$id" name="id">
+					
 
 
 					<div class="form-group">

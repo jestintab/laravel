@@ -1,7 +1,7 @@
-<?php namespace App\Http\Controllers;
+<?php namespace ContactsApp\Http\Controllers;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use ContactsApp\Http\Requests;
+use ContactsApp\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 

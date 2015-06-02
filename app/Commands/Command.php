@@ -1,4 +1,4 @@
-<?php namespace App\Commands;
+<?php namespace ContactsApp\Commands;
 
 abstract class Command {
 

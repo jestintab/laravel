@@ -1,0 +1,54 @@
+<?php $__env->startSection('content'); ?>
+<div class="container">
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			<div class="panel panel-default">
+
+				<div class="panel-heading">Contact Add</div>
+				<ul>
+				    <?php foreach($errors->all() as $error): ?>
+				        <li><?php echo e($error); ?></li>
+				    <?php endforeach; ?>
+				</ul>
+				<div class="panel-body">
+					
+					<?php echo Form::open(array('url' => 'contacts-save' , 'class' => 'form')); ?>
+
+
+					<div class="form-group">
+						<?php echo Form::label('Your Name'); ?>
+
+						<?php echo Form::text('name' , null,
+						array('required', 'class' => 'form-control' , 'placeholder' => 'Enter your name' )); ?>
+
+
+					 </div>
+
+					<div class="form-group">
+						<?php echo Form::label('Your email Address'); ?> 
+						<?php echo Form::text('email',null,
+						 array('required', 'class' => 'form-control', 'placeholder' => 'Enter your email! ')); ?>
+
+					</div>
+
+
+
+					<div class="form-group">
+					    <?php echo Form::submit('Add!', 
+					      array('class'=>'btn btn-primary')); ?>
+
+					</div>
+
+					<?php echo Form::close(); ?>
+
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

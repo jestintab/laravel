@@ -1,11 +1,11 @@
-<?php namespace App\Http\Controllers;
+<?php namespace ContactsApp\Http\Controllers;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use ContactsApp\Http\Requests;
+use ContactsApp\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-use App\Contact;
+use ContactsApp\Contact;
 use DB;
 
 class Contacts extends Controller {
@@ -18,11 +18,8 @@ class Contacts extends Controller {
 	public function index()
 	{	
 		
-		$users = DB::table('contacts')->get();
-
-		
-
-			
+		//$users = DB::table('contacts')->get();
+		$users = Contact::all();	
 		return view('contact/contact_listing')->with('user',$users);
 	}
 
@@ -49,19 +46,19 @@ class Contacts extends Controller {
 		$name = $add->input('name');
 		$email = $add->input('email');
 
-					
-			$data	=	DB::table('contacts')->insert(
-			    ['name' => $name, 'email' => $email]
+
+		$data	=	DB::table('contacts')->insert(
+			['name' => $name, 'email' => $email]
 			);
-			if($data){
-					return redirect('contacts');
-				}
-				else{
-				return view('contact/contact_saved');
-				}
+		if($data){
+			return redirect('contacts');
+		}
+		else{
+			return view('contact/contact_saved');
+		}
 
 
-			
+
 	}
 
 	/**
@@ -84,10 +81,13 @@ class Contacts extends Controller {
 	public function edit($id)
 	{
 		//
-		$result = DB::select('select * from contacts where id = ?', [$id]);;
+		//$result = DB::select('select * from contacts where id = ?', [$id]);
+
+		$result = Contact::find($id);
 
 
-		return view('contact/contact_edit')->with('user',$result);
+
+		return view('contact/contact_edit')->with('result',$result);
 
 	}
 
@@ -100,11 +100,19 @@ class Contacts extends Controller {
 	public function update($id,Request $update)
 	{
 		//
+		$contact = Contact::find($id);
 		$name = $update->input('name');
 		$email = $update->input('email');
 
-		echo $name , $email;
+		$contact->name = $name;
+		$contact->email = $email;
 
+		if($contact->save()){
+
+			return redirect('contacts')->withFlashMessage( $name."'". 's details are updated' );
+			
+		}
+		
 	}
 
 	/**
@@ -116,6 +124,15 @@ class Contacts extends Controller {
 	public function destroy($id)
 	{
 		//
+
+		
+		$contact =contact::find($id);
+
+		if($contact->delete()){
+
+			return redirect('contacts')->withFlashMessage( ' Details are deleted!' );
+			
+		}
 	}
 
 }

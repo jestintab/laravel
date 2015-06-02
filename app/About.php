@@ -1,4 +1,4 @@
-<?php namespace App;
+<?php namespace ContactsApp;
 
 use Illuminate\Database\Eloquent\Model;
 
