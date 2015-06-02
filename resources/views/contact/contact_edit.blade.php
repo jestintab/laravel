@@ -1,12 +1,4 @@
-<?php 
-// foreach ($user as $users){
-// 	$id =$users->id;
-// 	$name = $users->name;
-// 	$email = $users->email;
 
-// }
-
-?>
 @extends('app')
 
 @section('content')

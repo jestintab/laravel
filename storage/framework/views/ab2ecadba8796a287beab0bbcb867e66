@@ -13,7 +13,7 @@
 			
 					<div class="alert alert-success">
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-						<strong></strong> 
+						<strong>Deleted</strong> 
 					
 						<?php echo e(Session::get('flash_message')); ?>
 
@@ -31,24 +31,42 @@
 							</tr>
 						</thead>
 						<tbody>
+						
 					<i class="fa fa-name-shape-o-direction"></i>
 						
 							
-								<?php 
-							foreach ($user as $users)
-										{	
-											echo '<tr>';
-										    echo '<tr><td>' . ($users->id) .'</td>';
-										    echo '<td>' . ($users->name) .'</td>';
-										   echo '<td>' .($users->email) .'</td>';
-										   echo '<td> <a href="contacts-edit/'.($users->id).'" >
-										    <button class="btn btn-primary">edit</button></td>';
-										    echo '<td> <a href="contacts-delete/'.($users->id).'" >
-										    <button class="btn btn-primary">delete</button></td>';
-										   echo '</tr>';
+	
+							<?php foreach($user as $users): ?>
+								<tr>	
+								<td> <?php echo e($users->id); ?> </td>	
+								<td> <?php echo e($users->name); ?> </td>	
+								<td> <?php echo e($users->email); ?> </td>	
+								<td> <a type="button" href="contacts-edit/<?php echo e($users->id); ?>" class="btn btn-primary glyphicon glyphicon-edit"> </a> </td>	
+								<td> <a type="button" data-toggle="modal" href='#delete-confirm'  class="btn btn-primary glyphicon glyphicon-trash"> </a> </td>	
 
-										}
-							?>
+								</tr>
+										
+							<?php endforeach; ?>
+
+							
+							<div class="modal fade" id="delete-confirm">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+											<h4 class="modal-title">Confirm Delete</h4>
+										</div>
+										<div class="modal-body">
+											
+											Are you sure to delete <?php echo e($users->name); ?>'s details?
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+											<a type="button" href="contacts-delete/<?php echo e($users->id); ?>" class="btn btn-primary">Yes</a>
+										</div>
+									</div>
+								</div>
+							</div>
 							
 						</tbody>
 					</table>

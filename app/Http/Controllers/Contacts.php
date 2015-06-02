@@ -20,6 +20,7 @@ class Contacts extends Controller {
 		
 		//$users = DB::table('contacts')->get();
 		$users = Contact::all();	
+		 //$name = $users->name;
 		return view('contact/contact_listing')->with('user',$users);
 	}
 
@@ -84,6 +85,8 @@ class Contacts extends Controller {
 		//$result = DB::select('select * from contacts where id = ?', [$id]);
 
 		$result = Contact::find($id);
+
+
 
 
 
